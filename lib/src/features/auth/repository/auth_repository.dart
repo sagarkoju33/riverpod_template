@@ -25,7 +25,7 @@ class AuthRepository {
     final body = {"email": email, "password": password};
     final result = await _networkRepository.postRequest(
       url: AuthEndpoints.login,
-      body: body,
+      data: body,
     );
 
     return result.fold(
@@ -54,7 +54,7 @@ class AuthRepository {
     final body = {"name": name, "email": email, "password": password};
     final result = await _networkRepository.postRequest(
       url: AuthEndpoints.register,
-      body: body,
+      data: body,
     );
 
     return result.fold(

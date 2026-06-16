@@ -5,7 +5,9 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'init_controller.g.dart';
 
 @Riverpod(keepAlive: true)
-InitController initController(Ref ref) => InitController(ref: ref);
+InitController initController(Ref ref) {
+  return InitController(ref: ref);
+}
 
 class InitController {
   final Ref _ref;
