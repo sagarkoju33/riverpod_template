@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auth_app/src/commons/providers/dio.dart';
 import 'package:auth_app/src/model/failure.dart';
 import 'package:auth_app/src/network/types.dart';
@@ -46,7 +48,7 @@ class NetworkRepository {
     try {
       _debugPrint(method: method, url: url, data: data);
       final response = await request();
-      // print(response.data); // Optional: keep or remove based on your logging needs
+
       return Right(response);
     } on DioException catch (e) {
       return Left(

@@ -4,6 +4,6 @@ class AuthEndpoints {
   const AuthEndpoints._();
   static const _baseUrl = Endpoints.baseUrl;
 
-  static const login = '$_baseUrl/auth/login';
+  static const login = '$_baseUrl/login';
   static const register = '$_baseUrl/auth/signup';
 }

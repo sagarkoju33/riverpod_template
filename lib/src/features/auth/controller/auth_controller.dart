@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auth_app/src/commons/providers/auth.dart';
 import 'package:auth_app/src/commons/service/shared_preferences.dart';
 import 'package:auth_app/src/features/auth/repository/auth_repository.dart';
@@ -18,11 +20,13 @@ class AuthController extends _$AuthController {
 
     result.fold(
       (failure) {
+        log("rtttttttttttttttttttttttttttt${failure.message}");
         // handle failure
       },
       (auth) {
-        ref.read(sharedPrefServiceProvider).saveAuth(auth);
-        ref.read(currentAuthProvider.notifier).setAuth(auth);
+        log("response???????????????????>>>>>>>>>>>>>>$auth");
+        // ref.read(sharedPrefServiceProvider).saveAuth(auth);
+        // ref.read(currentAuthProvider.notifier).setAuth(auth);
       },
     );
   }

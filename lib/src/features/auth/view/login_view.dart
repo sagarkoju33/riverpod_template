@@ -94,7 +94,6 @@ class _LoginViewState extends State<LoginView> {
                           .read(authControllerProvider.notifier)
                           .login(email: email, password: password);
 
-                      // context.go(FeedView.routePath);
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),

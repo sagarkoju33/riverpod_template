@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auth_app/src/features/auth/repository/endpoints.dart';
 import 'package:auth_app/src/model/auth.dart';
 import 'package:auth_app/src/model/failure.dart';
@@ -18,11 +20,11 @@ class AuthRepository {
   AuthRepository({required NetworkRepository networkRepository})
     : _networkRepository = networkRepository;
 
-  FutureEither<Auth> login({
+  FutureEither<AuthResponse> login({
     required String email,
     required String password,
   }) async {
-    final body = {"email": email, "password": password};
+    final body = {"username": email, "password": password};
     final result = await _networkRepository.postRequest(
       url: AuthEndpoints.login,
       data: body,
@@ -37,7 +39,8 @@ class AuthRepository {
         // handle response
         try {
           final data = response.data;
-          final auth = Auth.fromJson(data);
+          final auth = AuthResponse.fromJson(data);
+          log("tttttttttttttttt${auth.data.token}");
           return Right(auth);
         } catch (e) {
           return Left(Failure(message: "Failed to parse response"));

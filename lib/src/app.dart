@@ -33,6 +33,7 @@ class _ApplicationState extends ConsumerState<Application> {
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
+      darkTheme: AppTheme.darkTheme,
       theme: AppTheme.lightTheme,
       routerConfig: auth == null ? authRouter : router,
     );
