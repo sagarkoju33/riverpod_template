@@ -20,8 +20,8 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   void initState() {
-    _emailController = TextEditingController();
-    _passwordController = TextEditingController();
+    _emailController = TextEditingController(text: "sagarkoju5");
+    _passwordController = TextEditingController(text: "9863180182");
     super.initState();
   }
 
@@ -93,7 +93,6 @@ class _LoginViewState extends State<LoginView> {
                       ref
                           .read(authControllerProvider.notifier)
                           .login(email: email, password: password);
-
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),

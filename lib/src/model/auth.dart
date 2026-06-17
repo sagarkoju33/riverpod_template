@@ -1,70 +1,53 @@
-import 'package:auth_app/src/model/user.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-// class Auth {
-//   final User user;
-//   final String token;
+part 'auth.freezed.dart';
+part 'auth.g.dart';
 
-//   Auth({required this.user, required this.token});
+// ─── Auth ───────────────────────────────────────────────
 
-//   factory Auth.fromJson(Map<String, dynamic> json) {
-//     return Auth(user: User.fromJson(json['user']), token: json['token']);
-//   }
+@freezed
+sealed class Auth with _$Auth {
+  const factory Auth({
+    // 👈 const is required for .g.dart to generate
+    required User user,
+    required String token,
+  }) = _Auth;
 
-//   Map<String, dynamic> toJson() {
-//     return {'user': user.toJson(), 'token': token};
-//   }
-// }
-
-class Auth {
-  final User user;
-  final String token;
-
-  Auth({required this.user, required this.token});
-
-  factory Auth.fromJson(Map<String, dynamic> json) {
-    return Auth(user: User.fromJson(json['user']), token: json['token']);
-  }
-
-  Map<String, dynamic> toJson() {
-    return {'user': user.toJson(), 'token': token};
-  }
+  factory Auth.fromJson(Map<String, dynamic> json) => _$AuthFromJson(json);
 }
 
-class AuthResponse {
-  final bool success;
-  final AuthData data;
-  final String message;
+// ─── AuthResponse ────────────────────────────────────────
+@freezed
+sealed class AuthResponse with _$AuthResponse {
+  const factory AuthResponse({
+    required bool success,
+    required AuthData data,
+    required String message,
+  }) = _AuthResponse;
 
-  AuthResponse({
-    required this.success,
-    required this.data,
-    required this.message,
-  });
-
-  factory AuthResponse.fromJson(Map<String, dynamic> json) {
-    return AuthResponse(
-      success: json['success'],
-      data: AuthData.fromJson(json['data']),
-      message: json['message'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {'success': success, 'data': data.toJson(), 'message': message};
-  }
+  factory AuthResponse.fromJson(Map<String, dynamic> json) =>
+      _$AuthResponseFromJson(json);
 }
 
-class AuthData {
-  final String id;
-  final String token;
+// ─── AuthData ────────────────────────────────────────────
+@freezed
+sealed class AuthData with _$AuthData {
+  const factory AuthData({
+    @JsonKey(name: '_id') required String id,
+    required String token,
+  }) = _AuthData;
 
-  AuthData({required this.id, required this.token});
+  factory AuthData.fromJson(Map<String, dynamic> json) =>
+      _$AuthDataFromJson(json);
+}
 
-  factory AuthData.fromJson(Map<String, dynamic> json) {
-    return AuthData(id: json['_id'], token: json['token']);
-  }
+@freezed
+sealed class User with _$User {
+  const factory User({
+    @JsonKey(name: '_id') required String id,
+    required String name,
+    required String email,
+  }) = _User;
 
-  Map<String, dynamic> toJson() {
-    return {'_id': id, 'token': token};
-  }
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

@@ -12,19 +12,19 @@ SharedPrefService sharedPrefService(Ref ref) => SharedPrefService();
 class SharedPrefService {
   static const String _authKey = "AUTH_KEY";
 
-  Future<void> saveAuth(Auth auth) async {
+  Future<void> saveAuth(AuthResponse auth) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString(_authKey, jsonEncode(auth.toJson()));
   }
 
-  Future<Auth?> getAuth() async {
+  Future<AuthResponse?> getAuth() async {
     final prefs = await SharedPreferences.getInstance();
     final authData = prefs.getString(_authKey);
     if (authData == null) {
       return null;
     }
 
-    return Auth.fromJson(jsonDecode(authData));
+    return AuthResponse.fromJson(jsonDecode(authData));
   }
 
   Future<void> clearAuth() async {

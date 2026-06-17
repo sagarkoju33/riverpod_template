@@ -1,5 +1,7 @@
+import 'package:auth_app/src/commons/providers/auth.dart';
 import 'package:auth_app/src/features/auth/controller/auth_controller.dart';
 import 'package:auth_app/src/features/feed/controller/feed_controller.dart';
+import 'package:auth_app/src/model/auth.dart';
 import 'package:auth_app/src/resources/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,9 +25,10 @@ class _FeedViewState extends ConsumerState<FeedView> {
 
   @override
   Widget build(BuildContext context) {
+    final auth = ref.watch(currentAuthProvider);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Protected Page"),
+        title: Text(auth?.message ?? ""),
         actions: [
           ElevatedButton(
             onPressed: () {

@@ -1,5 +1,6 @@
 import 'package:auth_app/src/commons/controller/init_controller.dart';
 import 'package:auth_app/src/commons/providers/auth.dart';
+import 'package:auth_app/src/commons/widget/global_internet_listener.dart';
 import 'package:auth_app/src/resources/theme.dart';
 import 'package:auth_app/src/utils/auth_router.dart';
 import 'package:auth_app/src/utils/router.dart';
@@ -35,7 +36,10 @@ class _ApplicationState extends ConsumerState<Application> {
       debugShowCheckedModeBanner: false,
       darkTheme: AppTheme.darkTheme,
       theme: AppTheme.lightTheme,
-      routerConfig: auth == null ? authRouter : router,
+      routerConfig: authRouter,
+
+      // routerConfig: auth == null ? authRouter : router,
+      builder: (context, child) => GlobalInternetListener(child: child!),
     );
   }
 }

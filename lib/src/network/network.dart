@@ -14,7 +14,7 @@ part 'network.g.dart';
 @Riverpod(keepAlive: true)
 NetworkRepository networkRepository(Ref ref) {
   return NetworkRepository(
-    authToken: ref.watch(currentAuthProvider)?.token ?? '',
+    authToken: ref.watch(currentAuthProvider)?.data.token ?? '',
     dio: ref.watch(dioProvider),
   );
 }

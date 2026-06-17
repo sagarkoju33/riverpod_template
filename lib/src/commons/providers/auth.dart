@@ -6,11 +6,11 @@ part 'auth.g.dart';
 @Riverpod(keepAlive: true)
 class CurrentAuth extends _$CurrentAuth {
   @override
-  Auth? build() {
+  AuthResponse? build() {
     return null;
   }
 
-  void setAuth(Auth? auth) {
+  void setAuth(AuthResponse? auth) {
     state = auth;
   }
 

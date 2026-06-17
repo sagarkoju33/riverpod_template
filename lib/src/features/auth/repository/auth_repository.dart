@@ -49,7 +49,7 @@ class AuthRepository {
     );
   }
 
-  FutureEither<Auth> signup({
+  FutureEither<AuthResponse> signup({
     required String email,
     required String password,
     required String name,
@@ -69,7 +69,7 @@ class AuthRepository {
         // handle response
         try {
           final data = response.data;
-          final auth = Auth.fromJson(data);
+          final auth = AuthResponse.fromJson(data);
           return Right(auth);
         } catch (e) {
           return Left(Failure(message: "Failed to parse response"));
