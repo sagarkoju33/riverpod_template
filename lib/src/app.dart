@@ -1,5 +1,6 @@
 import 'package:auth_app/src/commons/controller/init_controller.dart';
 import 'package:auth_app/src/commons/providers/auth.dart';
+import 'package:auth_app/src/resources/theme.dart';
 import 'package:auth_app/src/utils/auth_router.dart';
 import 'package:auth_app/src/utils/router.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,7 @@ class _ApplicationState extends ConsumerState<Application> {
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
       routerConfig: auth == null ? authRouter : router,
     );
   }

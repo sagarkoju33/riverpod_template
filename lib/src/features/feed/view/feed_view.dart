@@ -1,11 +1,12 @@
 import 'package:auth_app/src/features/auth/controller/auth_controller.dart';
 import 'package:auth_app/src/features/feed/controller/feed_controller.dart';
+import 'package:auth_app/src/resources/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FeedView extends ConsumerStatefulWidget {
   const FeedView({super.key});
-
+  static const routePath = '/feedback';
   @override
   ConsumerState<FeedView> createState() => _FeedViewState();
 }
@@ -34,30 +35,35 @@ class _FeedViewState extends ConsumerState<FeedView> {
           ),
         ],
       ),
-      body: Consumer(
-        builder: (context, ref, child) {
-          final state = ref.watch(feedControllerProvider);
+      body: Column(
+        children: [
+          Assets.images.profileimage.image(),
+          Consumer(
+            builder: (context, ref, child) {
+              final state = ref.watch(feedControllerProvider);
 
-          if (state.loading) {
-            return Center(child: CircularProgressIndicator());
-          }
+              if (state.loading) {
+                return Center(child: CircularProgressIndicator());
+              }
 
-          if (state.posts.isEmpty) {
-            return Center(child: Text("No posts yet"));
-          }
+              if (state.posts.isEmpty) {
+                return Center(child: Text("No posts yet"));
+              }
 
-          return ListView.builder(
-            itemCount: state.posts.length,
-            itemBuilder: (context, index) {
-              final post = state.posts[index];
+              return ListView.builder(
+                itemCount: state.posts.length,
+                itemBuilder: (context, index) {
+                  final post = state.posts[index];
 
-              return ListTile(
-                title: Text(post.name),
-                subtitle: Text(post.post),
+                  return ListTile(
+                    title: Text(post.name),
+                    subtitle: Text(post.post),
+                  );
+                },
               );
             },
-          );
-        },
+          ),
+        ],
       ),
     );
   }

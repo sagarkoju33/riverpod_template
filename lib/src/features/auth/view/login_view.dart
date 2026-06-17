@@ -1,5 +1,6 @@
 import 'package:auth_app/src/features/auth/controller/auth_controller.dart';
 import 'package:auth_app/src/features/auth/view/signup_view.dart';
+import 'package:auth_app/src/features/feed/view/feed_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -92,6 +93,8 @@ class _LoginViewState extends State<LoginView> {
                       ref
                           .read(authControllerProvider.notifier)
                           .login(email: email, password: password);
+
+                      // context.go(FeedView.routePath);
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),
